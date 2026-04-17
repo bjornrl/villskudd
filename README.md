@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# villskudd.no
 
-## Getting Started
+Official site for the Villskudd band. Next.js 16 (App Router) + GSAP + Lenis, with a Resend-powered newsletter signup in the footer.
 
-First, run the development server:
+## Local dev
 
 ```bash
+cp .env.example .env.local   # fill in your Resend API key + Audience ID
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [VERCEL.md](./VERCEL.md) for the full one-time checklist (Resend setup, Vercel import, DNS at webhuset).
 
-## Learn More
+## Project layout
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    layout.js            Root layout + fonts (Host Grotesk, DM Mono)
+    page.js              Home: preloader, hero, about gallery, DiningMenu, Testimonials, CTA, ImageBanner
+    globals.css
+    home.css
+    about/               "The Villskudd Story"
+    menu/                Placeholder "Music & Shows" (still uses template menu data — needs rewrite)
+    reservation/         Contact / booking page
+    api/
+      subscribe/route.js Resend Audiences handler
+  client-layout.js       Nav, Footer, Lenis smooth scroll, ViewTransitions
+  components/
+    Newsletter/          Signup form used inside Footer
+    Footer/              Footer with postcards-on-hover animation
+    Nav/                 Fullscreen overlay nav
+    Preloader/
+    Copy/                Line/word reveal wrapper (GSAP)
+    Button/              Sliding-char anchor button
+    CTA/                 "Come see us live" section
+    DiningMenu/          Template's animated menu — will become Releases/Tour
+    Testimonials/
+    Chefs/
+    StickyCards/
+    ImageBanner/
+    Marquee/
+  hooks/
+    useViewTransition.js
+public/                  Template restaurant images + villskudd_*.jpg band photos + HUND.png
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Known placeholders
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Search the repo for `REVIEW:` to find spots flagged for a content pass — hero shots, band bio, tour dates in the CTA, restaurant imagery still in use, etc.
 
-## Deploy on Vercel
+## Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16.2.3 (App Router, Turbopack by default)
+- React 19
+- GSAP 3 + ScrollTrigger + `@gsap/react`
+- Lenis (smooth scroll)
+- `next-view-transitions`
+- Resend (newsletter)

@@ -1,0 +1,170 @@
+.shop {
+  width: 100%;
+  padding: 10rem 0;
+  overflow: hidden;
+  background-color: var(--base-500);
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+
+.shop-header h3 {
+  width: 30%;
+}
+
+.shop-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.shop-nav-button-wrapper {
+  position: relative;
+  will-change: transform;
+}
+
+.shop-nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border: none;
+  border-radius: 50%;
+  background: var(--base-100);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--base-500);
+  cursor: pointer;
+  transition:
+    opacity 0.3s,
+    transform 0.2s ease;
+}
+
+.shop-nav-button:active {
+  transform: scale(0.85);
+}
+
+.shop-carousel {
+  width: 100%;
+  padding: 0 2rem 4rem 2rem;
+  overflow: visible;
+  will-change: transform;
+}
+
+.shop-track {
+  position: relative;
+  width: 100%;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform, opacity;
+}
+
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  padding: 1.5rem;
+  border-radius: 0.35rem;
+  background-color: var(--base-100);
+  will-change: transform;
+}
+
+.shop-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  margin-bottom: 1.25rem;
+  background-color: var(--base-200);
+}
+
+.shop-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.shop-type {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--base-300);
+}
+
+.shop-name {
+  color: var(--base-500);
+}
+
+.shop-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--base-500);
+}
+
+.shop-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  background-color: var(--base-500);
+  color: var(--base-100);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.shop-link:hover {
+  background-color: var(--base-400, var(--base-500));
+  transform: translateY(-2px);
+}
+
+.shop-link:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 1000px) {
+  .shop {
+    padding: 8rem 0 4rem 0;
+  }
+
+  .shop-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .shop-header h3 {
+    width: 100%;
+  }
+
+  .shop-nav-button {
+    transform: none;
+  }
+
+  .shop-card {
+    width: 100%;
+  }
+
+  .shop-link {
+    align-self: stretch;
+  }
+}

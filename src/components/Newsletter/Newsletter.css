@@ -1,0 +1,90 @@
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 32rem);
+  margin: 0 auto;
+}
+
+.newsletter-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid currentColor;
+}
+
+.newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding: 0.9rem 0.25rem;
+  font: inherit;
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: currentColor;
+}
+
+.newsletter-input::placeholder {
+  color: currentColor;
+  opacity: 0.55;
+}
+
+.newsletter-input:disabled {
+  opacity: 0.6;
+}
+
+.newsletter-submit {
+  background: transparent;
+  border: 0;
+  padding: 0.9rem 0.5rem;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: currentColor;
+  transition: opacity 0.25s ease;
+}
+
+.newsletter-submit:hover {
+  opacity: 0.65;
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.newsletter-status {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+  text-align: center;
+  margin: 0;
+}
+
+.newsletter-status-error {
+  opacity: 1;
+}
+
+.newsletter-coming-soon {
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.newsletter-coming-soon-label {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  text-align: center;
+  margin: 0;
+}
