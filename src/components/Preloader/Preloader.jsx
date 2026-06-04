@@ -16,7 +16,7 @@ let isInitialLoad = true;
 export default function Preloader({
   title = "Villskudd",
   duration = 2600,
-  buttonText = "Enter",
+  buttonText = "Trykk da",
   buttonHref = "#",
   onEnter,
   onAnimationComplete,
