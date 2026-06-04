@@ -197,7 +197,7 @@ const Shop = () => {
       <div className="container">
         <div className="shop-header">
           <Copy type="lines" animateOnScroll>
-            <h3>Shop</h3>
+            <h3>Mørch</h3>
           </Copy>
 
           <div className="shop-nav">
