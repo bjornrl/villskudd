@@ -30,6 +30,7 @@ export const HOME_QUERY = defineQuery(`{
   "settings": *[_type == "siteSettings"][0]{
     bandName,
     "heroImage": heroImage.asset->url,
+    "albumCover": albumCover.asset->url,
     heroTagline,
     listenHeading,
     streaming,

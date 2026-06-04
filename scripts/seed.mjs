@@ -85,6 +85,7 @@ async function run() {
     _type: "siteSettings",
     bandName: "Villskudd",
     heroImage: cover,
+    albumCover: cover,
     heroTagline: "Et band",
     listenHeading: "Hør på musikken",
     streaming: {

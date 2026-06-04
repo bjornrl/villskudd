@@ -36,29 +36,37 @@
   opacity: 0.85;
 }
 
-.hero .hero-listen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-  margin-top: 0.5rem;
+/* Forsidebilde — shown at its original (natural) aspect ratio */
+.hero .hero-front-image {
+  width: 18rem;
+  max-width: 70vw;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  margin-bottom: 0.5rem;
 }
 
-.hero .hero-listen-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.hero .hero-front-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
+/* Album cover — square, sits above the streaming links */
 .hero .hero-release-cover {
   flex-shrink: 0;
-  width: 16rem;
-  max-width: 55vw;
+  width: 14rem;
+  max-width: 60vw;
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 0.35rem;
+  margin-bottom: 0.5rem;
   transition: transform 0.4s ease;
+}
+
+.hero .hero-release-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero .hero-release:hover .hero-release-cover {
@@ -74,10 +82,10 @@
   opacity: 0.85;
 }
 
-/* 2×2 grid of streaming icons */
+/* single row of 4 streaming icons */
 .hero .hero-release-links {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -105,15 +113,10 @@
 }
 
 @media (max-width: 1000px) {
-  .hero .hero-listen {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
   .hero .hero-stream-link {
-    width: 3.5rem;
-    height: 3.5rem;
-    font-size: 1.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.4rem;
   }
 }
 

@@ -30,6 +30,15 @@ export const siteSettings = defineType({
       group: "hero",
     }),
     defineField({
+      name: "albumCover",
+      title: "Album cover",
+      type: "image",
+      options: { hotspot: true },
+      description:
+        "Kvadratisk cover som vises over strømmeknappene. Hvis tomt brukes forsidebildet / nyeste utgivelse.",
+      group: "hero",
+    }),
+    defineField({
       name: "heroTagline",
       title: "Hero-undertittel",
       type: "string",
