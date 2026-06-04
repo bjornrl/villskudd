@@ -4,32 +4,27 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 import gsap from "gsap";
+import { HiMenu, HiX } from "react-icons/hi";
 
 import { useViewTransition } from "@/hooks/useViewTransition";
 
 import "./Nav.css";
 
-// REVIEW: keeping route paths (/menu, /reservation) to avoid breaking internal links;
-// we can rename paths later.
+// In-page anchors — clicking scrolls to the matching section on the home page.
 const NAV_LINKS = [
   {
-    label: "Hjem",
-    href: "/",
+    label: "Konserter",
+    target: "#shows",
     img: "/villskudd/575123461_828732663215534_2468220249039237006_n.jpg",
   },
   {
-    label: "Om bandet",
-    href: "/about",
+    label: "Shop",
+    target: "#shop",
     img: "/villskudd/585751616_842519421836858_7276661789111941255_n.jpg",
   },
   {
-    label: "Musikk",
-    href: "/menu",
-    img: "/villskudd/631675502_906049198817213_5502754671203647605_n.jpg",
-  },
-  {
     label: "Kontakt",
-    href: "/reservation",
+    target: "#contact",
     img: "/villskudd/631825477_906049315483868_8478062725345646312_n.jpg",
   },
 ];
@@ -267,6 +262,22 @@ export default function Nav({ pageRef }) {
     else closeMenu();
   }
 
+  function handleNavClick(e, target) {
+    e.preventDefault();
+
+    const el = document.querySelector(target);
+
+    // not on the home page (section absent) — route home with the hash
+    if (!el) {
+      navigateWithTransition(`/${target}`);
+      return;
+    }
+
+    // jump the underlying page to the section, then reveal it by closing the menu
+    lenisInstanceRef.current?.scrollTo(el, { immediate: true, force: true });
+    closeMenu();
+  }
+
   function handleLinkHover(imageSrc) {
     if (!isMenuOpenRef.current || isMenuAnimatingRef.current) return;
     const container = previewImageRef.current;
@@ -298,21 +309,13 @@ export default function Nav({ pageRef }) {
   return (
     <>
       <nav className="nav-bar">
-        <div className="nav-logo">
-          <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              navigateWithTransition("/");
-            }}
-          >
-            <span className="nav-logo-wordmark">VILLSKUDD</span>
-          </a>
-        </div>
-
-        <div className="nav-toggle" onClick={handleToggle}>
-          <p id="nav-toggle-open">Menu</p>
-          <p id="nav-toggle-close">Close</p>
+        <div className="nav-toggle" onClick={handleToggle} aria-label="Meny">
+          <span id="nav-toggle-open">
+            <HiMenu />
+          </span>
+          <span id="nav-toggle-close">
+            <HiX />
+          </span>
         </div>
       </nav>
 
@@ -330,13 +333,10 @@ export default function Nav({ pageRef }) {
                 {NAV_LINKS.map((link) => (
                   <div className="nav-link" key={link.label}>
                     <a
-                      href={link.href}
+                      href={link.target}
                       data-img={link.img}
                       onMouseOver={() => handleLinkHover(link.img)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        navigateWithTransition(link.href);
-                      }}
+                      onClick={(e) => handleNavClick(e, link.target)}
                     >
                       {link.label}
                     </a>

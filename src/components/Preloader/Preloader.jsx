@@ -49,11 +49,10 @@ export default function Preloader({
   useEffect(() => {
     if (!isVisible) return;
 
-    let frameId = null;
-    const startTime = performance.now();
+    const startTime = Date.now();
 
-    const tick = (now) => {
-      const elapsed = now - startTime;
+    const intervalId = setInterval(() => {
+      const elapsed = Date.now() - startTime;
       const ratio = clamp(elapsed / duration, 0, 1);
       const percent = Math.round(ratio * 100);
 
@@ -61,17 +60,11 @@ export default function Preloader({
 
       if (percent >= 100) {
         setHasFinishedLoading(true);
-        return;
+        clearInterval(intervalId);
       }
+    }, 33);
 
-      frameId = requestAnimationFrame(tick);
-    };
-
-    frameId = requestAnimationFrame(tick);
-
-    return () => {
-      if (frameId) cancelAnimationFrame(frameId);
-    };
+    return () => clearInterval(intervalId);
   }, [duration, isVisible]);
 
   const loadingText = useMemo(() => `Loading... ${progress}%`, [progress]);
@@ -100,14 +93,23 @@ export default function Preloader({
       aria-label="Website preloader"
     >
       <div className="preloader-inner">
-        <div className="preloader-title-wrap">
-          <h2 className="preloader-title preloader-title-base">{title}</h2>
-          <h2
-            className="preloader-title preloader-title-fill"
+        <div className="preloader-logo-wrap">
+          <img
+            className="preloader-logo preloader-logo-base"
+            src="/villskuddhund.png"
+            alt={title}
+          />
+          <span
+            className="preloader-logo-fill"
             style={{ width: `${progress}%` }}
           >
-            {title}
-          </h2>
+            <img
+              className="preloader-logo"
+              src="/villskuddhund.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </span>
         </div>
 
         <div className="preloader-action-slot">

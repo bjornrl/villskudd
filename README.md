@@ -14,7 +14,7 @@ Visit [http://localhost:3000](http://localhost:3000).
 
 ## Deploy
 
-See [VERCEL.md](./VERCEL.md) for the full one-time checklist (Resend setup, Vercel import, DNS at webhuset).
+See [NETLIFY.md](./NETLIFY.md) for the full one-time checklist (Netlify import, DNS at webhuset, Resend setup).
 
 ## Project layout
 

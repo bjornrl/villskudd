@@ -1,25 +1,100 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
-  background-color: var(--base-500);
-}
-
-.hero .hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
+  background-color: var(--red);
 }
 
 .hero .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
+  gap: 4rem;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.hero .container h1 {
+  color: var(--base-100);
+}
+
+.hero .hero-release {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.hero .hero-release-label {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--base-100);
+  opacity: 0.85;
+}
+
+.hero .hero-release-cover {
+  width: 16rem;
+  max-width: 55vw;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  margin: 0.5rem 0;
+  transition: transform 0.4s ease;
+}
+
+.hero .hero-release:hover .hero-release-cover {
+  transform: scale(1.03);
+}
+
+.hero .hero-release-title {
+  color: var(--base-100);
+}
+
+.hero .hero-release-album {
+  color: var(--base-100);
+  opacity: 0.85;
+}
+
+/* 2×2 grid of streaming icons */
+.hero .hero-release-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero .hero-stream-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(224, 222, 209, 0.4);
+  border-radius: 0.5rem;
+  color: var(--base-100);
+  font-size: 1.75rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero .hero-stream-link:hover {
+  background-color: var(--base-100);
+  color: var(--red);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1000px) {
+  .hero .hero-stream-link {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
+  }
 }
 
 .about {

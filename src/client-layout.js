@@ -6,7 +6,6 @@ import { ReactLenis } from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
 
 import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer/Footer";
 
 const MOBILE_BREAKPOINT = 1000;
 const VIEW_TRANSITION_SETTLE_MS = 1600;
@@ -79,6 +78,12 @@ export default function ClientLayout({ children }) {
 
   const lenisOptions = isMobile ? LENIS_MOBILE : LENIS_DESKTOP;
 
+  // The Sanity Studio (/studio) renders on its own — no site nav, smooth scroll
+  // or page-transition chrome.
+  if (pathname?.startsWith("/studio")) {
+    return <>{children}</>;
+  }
+
   return (
     <ViewTransitions>
       <ReactLenis root options={lenisOptions}>
@@ -86,7 +91,6 @@ export default function ClientLayout({ children }) {
         <div className="page" ref={pageRef}>
           <div className="page-wrapper" ref={pageWrapperRef}>
             {children}
-            <Footer />
           </div>
         </div>
       </ReactLenis>

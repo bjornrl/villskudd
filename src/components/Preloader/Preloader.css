@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 2rem;
   overflow: hidden;
-  background: var(--base-600);
+  background: var(--red);
   transition:
     opacity 0.7s ease,
     visibility 0.7s ease;
@@ -28,29 +28,41 @@
   gap: 3rem;
 }
 
-.preloader-title-wrap {
+.preloader-logo-wrap {
   position: relative;
   display: inline-block;
+  width: clamp(220px, 45vw, 520px);
 }
 
-.preloader-title {
-  white-space: nowrap;
-  text-align: center;
-  line-height: 0.85;
+.preloader-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* recolor the red line-art to cream so it reads on the red background */
+  filter: brightness(0) invert(0.92);
 }
 
-.preloader-title-base {
-  color: rgba(224, 222, 209, 0.16);
+.preloader-logo-base {
+  opacity: 0.18;
 }
 
-.preloader-title-fill {
+.preloader-logo-fill {
   position: absolute;
   top: 0;
   left: 0;
+  display: block;
   width: 0%;
+  height: 100%;
   overflow: hidden;
-  color: var(--base-100);
   will-change: width;
+}
+
+.preloader-logo-fill .preloader-logo {
+  /* keep the inner image at the wrapper's full width so only the
+     container clips it (left-to-right reveal), no squashing */
+  width: clamp(220px, 45vw, 520px);
+  max-width: none;
 }
 
 .preloader-action-slot {

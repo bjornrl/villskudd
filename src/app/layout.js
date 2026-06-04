@@ -1,6 +1,7 @@
 import { Host_Grotesk, DM_Mono } from "next/font/google";
 
 import ClientLayout from "@/client-layout";
+import { SanityLive } from "@/sanity/lib/live";
 
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${hostGrotesk.variable} ${dmMono.variable}`}>
         <ClientLayout>{children}</ClientLayout>
+        <SanityLive />
       </body>
     </html>
   );
