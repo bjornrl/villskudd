@@ -36,11 +36,11 @@
 
 .preloader-logo {
   display: block;
-  /* render at the image's own (default) dimensions, only capped so it
-     never overflows the screen */
+  /* natural aspect ratio, capped so it stays a sensible size on desktop
+     and never overflows on mobile */
   width: auto;
   height: auto;
-  max-width: 100%;
+  max-width: min(80vw, 460px);
   object-fit: contain;
   /* recolor the red line-art to cream so it reads on the red background */
   filter: brightness(0) invert(0.92);
