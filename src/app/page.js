@@ -14,8 +14,11 @@ export default async function Home() {
   return (
     <>
       <Hero release={data?.latestRelease} settings={data?.settings} />
-      <Shows shows={data?.shows || []} />
-      <ShopGrid products={data?.products || []} />
+      <Shows shows={data?.shows || []} heading={data?.settings?.showsHeading} />
+      <ShopGrid
+        products={data?.products || []}
+        heading={data?.settings?.shopHeading}
+      />
       <Contact settings={data?.settings} />
     </>
   );

@@ -88,6 +88,12 @@ async function run() {
     albumCover: cover,
     heroTagline: "Et band",
     listenHeading: "Hør på musikken",
+    showsHeading: "Kommende konserter",
+    shopHeading: "Shop",
+    contactHeading: "Kontakt",
+    enterLabel: "Trykk da",
+    navLabels: { shows: "Konserter", shop: "Shop", contact: "Kontakt" },
+    navFooter: { left: "Since 2020", right: "Oslo, NO" },
     streaming: {
       spotify: "https://open.spotify.com/artist/5FCkBVSFSwy86a5t5iVwha",
       appleMusic: "https://music.apple.com/",

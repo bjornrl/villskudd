@@ -33,7 +33,10 @@ export default function Hero({ release, settings }) {
 
   return (
     <>
-      <Preloader onEnter={handlePreloaderEnter} />
+      <Preloader
+        onEnter={handlePreloaderEnter}
+        buttonText={settings?.enterLabel || "Trykk da"}
+      />
 
       <section className="hero">
         <div className="container">

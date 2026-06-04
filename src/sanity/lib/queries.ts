@@ -33,9 +33,20 @@ export const HOME_QUERY = defineQuery(`{
     "albumCover": albumCover.asset->url,
     heroTagline,
     listenHeading,
+    enterLabel,
+    showsHeading,
+    shopHeading,
+    contactHeading,
     streaming,
     contactIntro,
     contactItems[]{ label, value, href },
     socials[]{ label, href }
   }
+}`);
+
+// Lightweight settings for the global nav (rendered in the root layout).
+export const NAV_QUERY = defineQuery(`*[_type == "siteSettings"][0]{
+  navLabels,
+  navFooter,
+  socials[]{ label, href }
 }`);

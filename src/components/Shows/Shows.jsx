@@ -15,7 +15,7 @@ const formatDate = (value) => {
   });
 };
 
-const Shows = ({ shows = [] }) => {
+const Shows = ({ shows = [], heading }) => {
   if (!shows.length) return null;
 
   return (
@@ -23,7 +23,7 @@ const Shows = ({ shows = [] }) => {
       <div className="container">
         <div className="shows-header">
           <Copy type="lines" animateOnScroll>
-            <h3>Kommende konserter</h3>
+            <h3>{heading || "Kommende konserter"}</h3>
           </Copy>
         </div>
 

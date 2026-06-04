@@ -4,7 +4,7 @@ import Copy from "@/components/Copy/Copy";
 
 import "./ShopGrid.css";
 
-const ShopGrid = ({ products = [] }) => {
+const ShopGrid = ({ products = [], heading }) => {
   if (!products.length) return null;
 
   return (
@@ -12,7 +12,7 @@ const ShopGrid = ({ products = [] }) => {
       <div className="container">
         <div className="shop-grid-header">
           <Copy type="lines" animateOnScroll>
-            <h3>Shop</h3>
+            <h3>{heading || "Shop"}</h3>
           </Copy>
         </div>
 

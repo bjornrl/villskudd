@@ -40,7 +40,7 @@ const LENIS_DESKTOP = {
   lerp: 0.1,
 };
 
-export default function ClientLayout({ children }) {
+export default function ClientLayout({ children, navSettings }) {
   const pageRef = useRef(null);
   const pageWrapperRef = useRef(null);
   const isFirstNavigation = useRef(true);
@@ -87,7 +87,7 @@ export default function ClientLayout({ children }) {
   return (
     <ViewTransitions>
       <ReactLenis root options={lenisOptions}>
-        <Nav pageRef={pageWrapperRef} />
+        <Nav pageRef={pageWrapperRef} navSettings={navSettings} />
         <div className="page" ref={pageRef}>
           <div className="page-wrapper" ref={pageWrapperRef}>
             {children}

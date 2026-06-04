@@ -11,26 +11,29 @@ import { useViewTransition } from "@/hooks/useViewTransition";
 import "./Nav.css";
 
 // In-page anchors — clicking scrolls to the matching section on the home page.
-const NAV_LINKS = [
+// Labels default here but can be overridden from Sanity (navLabels).
+const NAV_LINKS_BASE = [
   {
+    key: "shows",
     label: "Konserter",
     target: "#shows",
     img: "/villskudd/575123461_828732663215534_2468220249039237006_n.jpg",
   },
   {
+    key: "shop",
     label: "Shop",
     target: "#shop",
     img: "/villskudd/585751616_842519421836858_7276661789111941255_n.jpg",
   },
   {
+    key: "contact",
     label: "Kontakt",
     target: "#contact",
     img: "/villskudd/631825477_906049315483868_8478062725345646312_n.jpg",
   },
 ];
 
-// REVIEW: add your real Instagram URL
-const SOCIAL_LINKS = [
+const FALLBACK_SOCIALS = [
   { label: "Spotify", href: "https://open.spotify.com/artist/5FCkBVSFSwy86a5t5iVwha" },
   { label: "Instagram", href: "#" },
   { label: "Email", href: "mailto:villskuddband@gmail.com" },
@@ -40,10 +43,20 @@ const LINK_TEXT_SELECTORS = [".nav-link a", ".nav-social a"];
 const FOOTER_TEXT_SELECTORS = [".nav-menu-footer p span"];
 const ALL_TEXT_SELECTORS = [...LINK_TEXT_SELECTORS, ...FOOTER_TEXT_SELECTORS];
 
-export default function Nav({ pageRef }) {
+export default function Nav({ pageRef, navSettings }) {
   const pathname = usePathname();
   const lenis = useLenis();
   const { navigateWithTransition } = useViewTransition();
+
+  const navLabels = navSettings?.navLabels || {};
+  const NAV_LINKS = NAV_LINKS_BASE.map((link) => ({
+    ...link,
+    label: navLabels[link.key] || link.label,
+  }));
+  const SOCIAL_LINKS =
+    navSettings?.socials?.length > 0 ? navSettings.socials : FALLBACK_SOCIALS;
+  const footerLeft = navSettings?.navFooter?.left || "Since 2020";
+  const footerRight = navSettings?.navFooter?.right || "Oslo, NO";
 
   const lenisInstanceRef = useRef(null);
   const isMenuOpenRef = useRef(false);
@@ -356,10 +369,10 @@ export default function Nav({ pageRef }) {
 
           <div className="nav-menu-footer">
             <p className="sm">
-              <span>Since 2020</span>
+              <span>{footerLeft}</span>
             </p>
             <p className="sm">
-              <span>Oslo, NO</span>
+              <span>{footerRight}</span>
             </p>
           </div>
         </div>

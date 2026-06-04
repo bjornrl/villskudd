@@ -16,7 +16,7 @@ const Contact = ({ settings }) => {
       <div className="container">
         <div className="contact-header">
           <Copy type="lines" animateOnScroll>
-            <h3>Kontakt</h3>
+            <h3>{settings?.contactHeading || "Kontakt"}</h3>
           </Copy>
           <Copy type="lines" animateOnScroll>
             <p className="contact-intro">{intro}</p>
