@@ -33,9 +33,11 @@ export const product = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "url",
-      title: "Kjøpslenke",
-      type: "url",
+      name: "email",
+      title: "E-post for kjøp",
+      type: "string",
+      description: "Knappen åpner en e-post til denne adressen.",
+      validation: (rule) => rule.email(),
     }),
     defineField({
       name: "buyLabel",

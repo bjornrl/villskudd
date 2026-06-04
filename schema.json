@@ -318,6 +318,13 @@
         },
         "optional": true
       },
+      "shopMailLabel": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "contactHeading": {
         "type": "objectAttribute",
         "value": {
@@ -578,7 +585,7 @@
         },
         "optional": true
       },
-      "url": {
+      "email": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

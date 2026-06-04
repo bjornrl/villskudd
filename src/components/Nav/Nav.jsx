@@ -286,8 +286,16 @@ export default function Nav({ pageRef, navSettings }) {
       return;
     }
 
+    // The page is CSS-transformed while the menu is open, so getBoundingClientRect
+    // (used by scrollTo(element)) is distorted. offsetTop is layout-based and
+    // ignores transforms, so compute the absolute target from the offset chain.
+    let y = 0;
+    for (let node = el; node; node = node.offsetParent) {
+      y += node.offsetTop || 0;
+    }
+
     // jump the underlying page to the section, then reveal it by closing the menu
-    lenisInstanceRef.current?.scrollTo(el, { immediate: true, force: true });
+    lenisInstanceRef.current?.scrollTo(y, { immediate: true, force: true });
     closeMenu();
   }
 

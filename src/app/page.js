@@ -18,6 +18,7 @@ export default async function Home() {
       <ShopGrid
         products={data?.products || []}
         heading={data?.settings?.shopHeading}
+        mailLabel={data?.settings?.shopMailLabel}
       />
       <Contact settings={data?.settings} />
     </>

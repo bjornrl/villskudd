@@ -23,7 +23,7 @@ export const HOME_QUERY = defineQuery(`{
     name,
     type,
     price,
-    url,
+    email,
     buyLabel,
     "image": image.asset->url
   },
@@ -36,6 +36,7 @@ export const HOME_QUERY = defineQuery(`{
     enterLabel,
     showsHeading,
     shopHeading,
+    shopMailLabel,
     contactHeading,
     streaming,
     contactIntro,

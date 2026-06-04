@@ -149,6 +149,13 @@ export const siteSettings = defineType({
       initialValue: "Shop",
     }),
     defineField({
+      name: "shopMailLabel",
+      title: "Tekst over kjøpsknappen",
+      type: "string",
+      group: "labels",
+      initialValue: "Send en mail til",
+    }),
+    defineField({
       name: "contactHeading",
       title: "Overskrift – kontakt",
       type: "string",
