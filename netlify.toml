@@ -1,0 +1,11 @@
+# Netlify config. The Next.js runtime is auto-detected, so build command,
+# publish dir and the /api/subscribe route are handled automatically.
+#
+# These NEXT_PUBLIC_* values are safe to commit — they are public by design
+# (shipped to the browser) and the site needs them at build time to read
+# content from Sanity. Secrets (e.g. the Resend newsletter key) must NOT go
+# here; set those in the Netlify UI under Site settings → Environment variables.
+[build.environment]
+  NEXT_PUBLIC_SANITY_PROJECT_ID = "wyyyh8dy"
+  NEXT_PUBLIC_SANITY_DATASET = "production"
+  NEXT_PUBLIC_SANITY_API_VERSION = "2026-02-01"

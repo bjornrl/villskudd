@@ -16,7 +16,7 @@ Repo is at `github.com/bjornrl/villskudd`. Any further changes: commit and push 
    - **Build command**: `next build` (auto-detected)
    - **Publish directory**: `.next` (auto-detected)
    - **Functions directory**: leave empty (Netlify's Next runtime handles the `/api/subscribe` Route Handler automatically)
-5. **Environment variables**: skip for now — the newsletter shows "Launching soon" until you add them later.
+5. **Environment variables**: the Sanity connection vars (`NEXT_PUBLIC_SANITY_*`) are already committed in `netlify.toml`, so the build works out of the box. The only secret to add later is the Resend newsletter key (`RESEND_API_KEY`) — until then the newsletter shows "Launching soon".
 6. Click **Deploy villskudd**.
 
 First build takes 2–4 minutes. You'll get a preview URL like `villskudd-xyz.netlify.app`.
