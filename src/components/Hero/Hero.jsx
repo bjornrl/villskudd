@@ -53,38 +53,42 @@ export default function Hero({ release, settings }) {
               <p className="sm hero-release-label">{tagline}</p>
             </Copy>
 
-            {heroImage && (
-              <div className="hero-release-cover">
-                <img src={heroImage} alt={bandName} />
-              </div>
-            )}
-
-            {links.length > 0 && (
-              <>
-                <Copy
-                  type="lines"
-                  animateOnScroll={false}
-                  delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
-                >
-                  <h3 className="hero-release-title">{listenHeading}</h3>
-                </Copy>
-
-                <div className="hero-release-links">
-                  {links.map(({ key, label, Icon }) => (
-                    <a
-                      key={key}
-                      className="hero-stream-link"
-                      href={streaming[key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                    >
-                      <Icon />
-                    </a>
-                  ))}
+            <div className="hero-listen">
+              {heroImage && (
+                <div className="hero-release-cover">
+                  <img src={heroImage} alt={bandName} />
                 </div>
-              </>
-            )}
+              )}
+
+              {links.length > 0 && (
+                <div className="hero-listen-content">
+                  <Copy
+                    type="lines"
+                    animateOnScroll={false}
+                    delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
+                  >
+                    <h3 className="hero-release-title" style={{ lineHeight: 1.1 }}>
+                      {listenHeading}
+                    </h3>
+                  </Copy>
+
+                  <div className="hero-release-links">
+                    {links.map(({ key, label, Icon }) => (
+                      <a
+                        key={key}
+                        className="hero-stream-link"
+                        href={streaming[key]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                      >
+                        <Icon />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>

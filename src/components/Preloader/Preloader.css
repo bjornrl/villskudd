@@ -31,13 +31,16 @@
 .preloader-logo-wrap {
   position: relative;
   display: inline-block;
-  width: clamp(220px, 45vw, 520px);
+  max-width: 100%;
 }
 
 .preloader-logo {
   display: block;
-  width: 100%;
+  /* render at the image's own (default) dimensions, only capped so it
+     never overflows the screen */
+  width: auto;
   height: auto;
+  max-width: 100%;
   object-fit: contain;
   /* recolor the red line-art to cream so it reads on the red background */
   filter: brightness(0) invert(0.92);
@@ -59,9 +62,10 @@
 }
 
 .preloader-logo-fill .preloader-logo {
-  /* keep the inner image at the wrapper's full width so only the
-     container clips it (left-to-right reveal), no squashing */
-  width: clamp(220px, 45vw, 520px);
+  /* match the base image by height so its width auto-matches, then the
+     container clips it left-to-right for the reveal — no fixed width needed */
+  width: auto;
+  height: 100%;
   max-width: none;
 }
 
@@ -79,7 +83,7 @@
   white-space: nowrap;
   font-family: var(--font-dm-mono), monospace;
   text-transform: uppercase;
-  color: var(--base-200);
+  color: #fff;
   transform: translate(-50%, -50%);
   transition:
     opacity 0.35s ease,

@@ -67,7 +67,7 @@ export default function Preloader({
     return () => clearInterval(intervalId);
   }, [duration, isVisible]);
 
-  const loadingText = useMemo(() => `Loading... ${progress}%`, [progress]);
+  const loadingText = useMemo(() => `${progress}`, [progress]);
 
   const handleEnterClick = (event) => {
     if (event) event.preventDefault();

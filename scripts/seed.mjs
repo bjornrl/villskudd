@@ -96,12 +96,6 @@ async function run() {
     contactIntro: "Booking, presse eller bare en hilsen — ta kontakt.",
     contactItems: [
       {
-        _key: "booking",
-        label: "Booking",
-        value: "booking@villskudd.no",
-        href: "mailto:booking@villskudd.no",
-      },
-      {
         _key: "general",
         label: "Generelt",
         value: "villskuddband@gmail.com",
