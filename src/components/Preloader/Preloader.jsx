@@ -91,6 +91,7 @@ export default function Preloader({
     <section
       className={`preloader ${isExiting ? "is-exiting" : ""}`}
       aria-label="Website preloader"
+      data-lenis-prevent
     >
       <div className="preloader-inner">
         <div className="preloader-logo-wrap">

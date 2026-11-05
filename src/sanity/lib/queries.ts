@@ -33,6 +33,7 @@ export const HOME_QUERY = defineQuery(`{
     "albumCover": albumCover.asset->url,
     heroTagline,
     listenHeading,
+    videoUrl,
     enterLabel,
     showsHeading,
     shopHeading,

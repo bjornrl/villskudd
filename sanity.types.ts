@@ -45,6 +45,7 @@ export type SiteSettings = {
   };
   heroTagline?: string;
   listenHeading?: string;
+  videoUrl?: string;
   streaming?: {
     spotify?: string;
     appleMusic?: string;
@@ -272,7 +273,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/lib/queries.ts
 // Variable: HOME_QUERY
-// Query: {  "latestRelease": *[_type == "release"] | order(releaseDate desc)[0]{    _id,    title,    album,    year,    link,    "cover": cover.asset->url  },  "shows": *[_type == "show"] | order(date asc){    _id,    date,    venue,    city,    ticketUrl,    ticketLabel  },  "products": *[_type == "product"] | order(order asc, name asc){    _id,    name,    type,    price,    email,    buyLabel,    "image": image.asset->url  },  "settings": *[_type == "siteSettings"][0]{    bandName,    "heroImage": heroImage.asset->url,    "albumCover": albumCover.asset->url,    heroTagline,    listenHeading,    enterLabel,    showsHeading,    shopHeading,    shopMailLabel,    contactHeading,    streaming,    contactIntro,    contactItems[]{ label, value, href },    socials[]{ label, href }  }}
+// Query: {  "latestRelease": *[_type == "release"] | order(releaseDate desc)[0]{    _id,    title,    album,    year,    link,    "cover": cover.asset->url  },  "shows": *[_type == "show"] | order(date asc){    _id,    date,    venue,    city,    ticketUrl,    ticketLabel  },  "products": *[_type == "product"] | order(order asc, name asc){    _id,    name,    type,    price,    email,    buyLabel,    "image": image.asset->url  },  "settings": *[_type == "siteSettings"][0]{    bandName,    "heroImage": heroImage.asset->url,    "albumCover": albumCover.asset->url,    heroTagline,    listenHeading,    videoUrl,    enterLabel,    showsHeading,    shopHeading,    shopMailLabel,    contactHeading,    streaming,    contactIntro,    contactItems[]{ label, value, href },    socials[]{ label, href }  }}
 export type HOME_QUERY_RESULT = {
   latestRelease: {
     _id: string;
@@ -305,6 +306,7 @@ export type HOME_QUERY_RESULT = {
     albumCover: string | null;
     heroTagline: string | null;
     listenHeading: string | null;
+    videoUrl: string | null;
     enterLabel: string | null;
     showsHeading: string | null;
     shopHeading: string | null;
@@ -352,7 +354,7 @@ export type NAV_QUERY_RESULT = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '{\n  "latestRelease": *[_type == "release"] | order(releaseDate desc)[0]{\n    _id,\n    title,\n    album,\n    year,\n    link,\n    "cover": cover.asset->url\n  },\n  "shows": *[_type == "show"] | order(date asc){\n    _id,\n    date,\n    venue,\n    city,\n    ticketUrl,\n    ticketLabel\n  },\n  "products": *[_type == "product"] | order(order asc, name asc){\n    _id,\n    name,\n    type,\n    price,\n    email,\n    buyLabel,\n    "image": image.asset->url\n  },\n  "settings": *[_type == "siteSettings"][0]{\n    bandName,\n    "heroImage": heroImage.asset->url,\n    "albumCover": albumCover.asset->url,\n    heroTagline,\n    listenHeading,\n    enterLabel,\n    showsHeading,\n    shopHeading,\n    shopMailLabel,\n    contactHeading,\n    streaming,\n    contactIntro,\n    contactItems[]{ label, value, href },\n    socials[]{ label, href }\n  }\n}': HOME_QUERY_RESULT;
+    '{\n  "latestRelease": *[_type == "release"] | order(releaseDate desc)[0]{\n    _id,\n    title,\n    album,\n    year,\n    link,\n    "cover": cover.asset->url\n  },\n  "shows": *[_type == "show"] | order(date asc){\n    _id,\n    date,\n    venue,\n    city,\n    ticketUrl,\n    ticketLabel\n  },\n  "products": *[_type == "product"] | order(order asc, name asc){\n    _id,\n    name,\n    type,\n    price,\n    email,\n    buyLabel,\n    "image": image.asset->url\n  },\n  "settings": *[_type == "siteSettings"][0]{\n    bandName,\n    "heroImage": heroImage.asset->url,\n    "albumCover": albumCover.asset->url,\n    heroTagline,\n    listenHeading,\n    videoUrl,\n    enterLabel,\n    showsHeading,\n    shopHeading,\n    shopMailLabel,\n    contactHeading,\n    streaming,\n    contactIntro,\n    contactItems[]{ label, value, href },\n    socials[]{ label, href }\n  }\n}': HOME_QUERY_RESULT;
     '*[_type == "siteSettings"][0]{\n  navLabels,\n  navFooter,\n  socials[]{ label, href }\n}': NAV_QUERY_RESULT;
   }
 }

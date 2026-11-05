@@ -179,6 +179,13 @@
         },
         "optional": true
       },
+      "videoUrl": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "streaming": {
         "type": "objectAttribute",
         "value": {

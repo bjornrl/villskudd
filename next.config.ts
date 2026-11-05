@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Phones open the dev server by LAN IP or a .local name, not "localhost".
+  // Next blocks those origins from loading dev JavaScript, so the page stays
+  // on the server-rendered loading screen and never starts.
+  allowedDevOrigins: ["192.168.*.*", "10.*.*.*", "172.*.*.*", "*.local"],
 };
 
 export default nextConfig;

@@ -13,11 +13,60 @@ const STREAMING = [
   { key: "youtube", label: "YouTube", Icon: SiYoutube },
 ];
 
+const YOUTUBE_HOSTS = new Set([
+  "youtu.be",
+  "youtube.com",
+  "m.youtube.com",
+  "music.youtube.com",
+  "youtube-nocookie.com",
+]);
+
+function toYouTubeEmbed(url) {
+  if (!url || typeof url !== "string") return null;
+
+  let parsed;
+  try {
+    parsed = new URL(url.trim());
+  } catch {
+    return null;
+  }
+
+  const host = parsed.hostname.replace(/^www\./, "");
+  if (!YOUTUBE_HOSTS.has(host)) return null;
+
+  let id = null;
+  if (host === "youtu.be") {
+    id = parsed.pathname.split("/").filter(Boolean)[0];
+  } else if (parsed.pathname === "/watch") {
+    id = parsed.searchParams.get("v");
+  } else {
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    const markerIndex = parts.findIndex((part) =>
+      ["embed", "shorts", "live", "v"].includes(part),
+    );
+    if (markerIndex >= 0) id = parts[markerIndex + 1];
+  }
+
+  if (!id || !/^[\w-]{11}$/.test(id)) return null;
+
+  const params = new URLSearchParams({ rel: "0" });
+  const start = parsed.searchParams.get("start") || parsed.searchParams.get("t");
+  if (start && /^\d+$/.test(start.replace(/s$/, ""))) {
+    params.set("start", start.replace(/s$/, ""));
+  }
+
+  return `https://www.youtube-nocookie.com/embed/${id}?${params.toString()}`;
+}
+
 export default function Hero({ release, settings }) {
   const isInitialPageLoad = useRef(isInitialLoad).current;
   const [preloaderDelay, setPreloaderDelay] = useState(
     isInitialPageLoad ? 9999 : 0,
   );
+  // Keep the YouTube player out of the DOM until the intro is gone. On
+  // mobile, an iframe composites above position:fixed, so mounting it
+  // during the preloader hides the dog and the Trykk da button.
+  const [showVideo, setShowVideo] = useState(!isInitialPageLoad);
 
   const handlePreloaderEnter = () => {
     if (isInitialPageLoad) setPreloaderDelay(0.2);
@@ -30,11 +79,13 @@ export default function Hero({ release, settings }) {
   const heroImage = settings?.heroImage || release?.cover;
   const albumCover = settings?.albumCover || release?.cover;
   const links = STREAMING.filter(({ key }) => streaming[key]);
+  const videoEmbed = toYouTubeEmbed(settings?.videoUrl);
 
   return (
     <>
       <Preloader
         onEnter={handlePreloaderEnter}
+        onAnimationComplete={() => setShowVideo(true)}
         buttonText={settings?.enterLabel || "Trykk da"}
       />
 
@@ -100,6 +151,19 @@ export default function Hero({ release, settings }) {
                   ))}
                 </div>
               </>
+            )}
+
+            {videoEmbed && showVideo && (
+              <div className="hero-video">
+                <iframe
+                  src={videoEmbed}
+                  title="YouTube-video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
             )}
           </div>
         </div>

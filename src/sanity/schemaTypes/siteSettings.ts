@@ -55,6 +55,30 @@ export const siteSettings = defineType({
       initialValue: "Hør på musikken",
     }),
     defineField({
+      name: "videoUrl",
+      title: "YouTube-video",
+      type: "url",
+      group: "hero",
+      description:
+        "Lenke til en YouTube-video. Vises under strømmeknappene og over kommende konserter. La feltet stå tomt for å skjule videoen.",
+      validation: (rule) =>
+        rule.uri({ scheme: ["http", "https"] }).custom((value) => {
+          if (!value) return true;
+          try {
+            const host = new URL(value).hostname.replace(/^www\./, "");
+            const isYouTube =
+              host === "youtu.be" ||
+              host === "youtube.com" ||
+              host === "m.youtube.com" ||
+              host === "music.youtube.com" ||
+              host === "youtube-nocookie.com";
+            return isYouTube || "Lim inn en YouTube-lenke";
+          } catch {
+            return "Lim inn en gyldig lenke";
+          }
+        }),
+    }),
+    defineField({
       name: "streaming",
       title: "Strømmetjenester",
       type: "object",
