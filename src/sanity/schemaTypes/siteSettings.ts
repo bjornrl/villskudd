@@ -8,7 +8,8 @@ export const siteSettings = defineType({
   icon: CogIcon,
   groups: [
     { name: "hero", title: "Hero" },
-    { name: "streaming", title: "Strømming" },
+    { name: "song", title: "Nyeste låt" },
+    { name: "album", title: "Nyeste album" },
     { name: "contact", title: "Kontakt" },
     { name: "labels", title: "Overskrifter & meny" },
   ],
@@ -32,12 +33,12 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: "albumCover",
-      title: "Album cover",
+      title: "Album – cover",
       type: "image",
       options: { hotspot: true },
       description:
-        "Kvadratisk cover som vises over strømmeknappene. Hvis tomt brukes forsidebildet / nyeste utgivelse.",
-      group: "hero",
+        "Kvadratisk cover som vises over album-strømmeknappene. Hvis tomt brukes forsidebildet / nyeste utgivelse.",
+      group: "album",
     }),
     defineField({
       name: "heroTagline",
@@ -49,10 +50,10 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: "listenHeading",
-      title: 'Overskrift over strømmeknappene',
+      title: "Album – overskrift",
       type: "string",
-      group: "hero",
-      initialValue: "Hør på musikken",
+      group: "album",
+      initialValue: "Hør på vårt nyeste album",
     }),
     defineField({
       name: "videoUrl",
@@ -79,11 +80,40 @@ export const siteSettings = defineType({
         }),
     }),
     defineField({
-      name: "streaming",
-      title: "Strømmetjenester",
+      name: "songHeading",
+      title: "Låt – overskrift",
+      type: "string",
+      group: "song",
+      initialValue: "Hør på vår nyeste låt",
+    }),
+    defineField({
+      name: "songCover",
+      title: "Låt – bilde",
+      type: "image",
+      options: { hotspot: true },
+      description: "Kvadratisk bilde som vises over låt-strømmeknappene.",
+      group: "song",
+    }),
+    defineField({
+      name: "songStreaming",
+      title: "Låt – strømmelenker",
       type: "object",
-      group: "streaming",
-      description: "Lenker til bandet på de ulike tjenestene.",
+      group: "song",
+      description:
+        "Lenker til låten på de ulike tjenestene. La alle stå tomme for å skjule låt-seksjonen.",
+      fields: [
+        defineField({ name: "spotify", title: "Spotify", type: "url" }),
+        defineField({ name: "appleMusic", title: "Apple Music", type: "url" }),
+        defineField({ name: "tidal", title: "Tidal", type: "url" }),
+        defineField({ name: "youtube", title: "YouTube", type: "url" }),
+      ],
+    }),
+    defineField({
+      name: "streaming",
+      title: "Album – strømmelenker",
+      type: "object",
+      group: "album",
+      description: "Lenker til albumet på de ulike tjenestene.",
       fields: [
         defineField({ name: "spotify", title: "Spotify", type: "url" }),
         defineField({ name: "appleMusic", title: "Apple Music", type: "url" }),

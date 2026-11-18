@@ -8,6 +8,11 @@ import Contact from "@/components/Contact/Contact";
 
 import "./home.css";
 
+// Always read current published Sanity content. Without this, Netlify/Next
+// can keep serving a build-time snapshot — which is why the YouTube field
+// stayed empty on the live site after it was added in the Studio.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const { data } = await sanityFetch({ query: HOME_QUERY });
 

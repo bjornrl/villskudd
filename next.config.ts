@@ -5,6 +5,19 @@ const nextConfig: NextConfig = {
   // Next blocks those origins from loading dev JavaScript, so the page stays
   // on the server-rendered loading screen and never starts.
   allowedDevOrigins: ["192.168.*.*", "10.*.*.*", "172.*.*.*", "*.local"],
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

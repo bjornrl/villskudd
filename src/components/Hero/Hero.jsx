@@ -55,7 +55,44 @@ function toYouTubeEmbed(url) {
     params.set("start", start.replace(/s$/, ""));
   }
 
-  return `https://www.youtube-nocookie.com/embed/${id}?${params.toString()}`;
+  return `https://www.youtube.com/embed/${id}?${params.toString()}`;
+}
+
+// Heading + square cover + streaming icons. Hidden when no links are set.
+function ListenSection({ heading, cover, coverAlt, streaming, delay }) {
+  const links = STREAMING.filter(({ key }) => streaming?.[key]);
+  if (links.length === 0) return null;
+
+  return (
+    <div className="hero-listen">
+      <Copy type="lines" animateOnScroll={false} delay={delay}>
+        <h4 className="hero-release-title" style={{ lineHeight: 1.1 }}>
+          {heading}
+        </h4>
+      </Copy>
+
+      {cover && (
+        <div className="hero-release-cover">
+          <img src={cover} alt={coverAlt} />
+        </div>
+      )}
+
+      <div className="hero-release-links">
+        {links.map(({ key, label, Icon }) => (
+          <a
+            key={key}
+            className="hero-stream-link"
+            href={streaming[key]}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+          >
+            <Icon />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default function Hero({ release, settings }) {
@@ -75,10 +112,12 @@ export default function Hero({ release, settings }) {
   const streaming = settings?.streaming || {};
   const bandName = settings?.bandName || "Villskudd";
   const tagline = settings?.heroTagline;
-  const listenHeading = settings?.listenHeading || "Hør på musikken";
+  const listenHeading = settings?.listenHeading || "Hør på vårt nyeste album";
   const heroImage = settings?.heroImage || release?.cover;
   const albumCover = settings?.albumCover || release?.cover;
-  const links = STREAMING.filter(({ key }) => streaming[key]);
+  const songHeading = settings?.songHeading || "Hør på vår nyeste låt";
+  const songCover = settings?.songCover;
+  const songStreaming = settings?.songStreaming || {};
   const videoEmbed = toYouTubeEmbed(settings?.videoUrl);
 
   return (
@@ -118,40 +157,21 @@ export default function Hero({ release, settings }) {
             <br/>
             <br/>
 
-            {links.length > 0 && (
-              <>
-                <Copy
-                  type="lines"
-                  animateOnScroll={false}
-                  delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
-                >
-                  <h4 className="hero-release-title" style={{ lineHeight: 1.1 }}>
-                    {listenHeading}
-                  </h4>
-                </Copy>
+            <ListenSection
+              heading={songHeading}
+              cover={songCover}
+              coverAlt="Låtcover"
+              streaming={songStreaming}
+              delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
+            />
 
-                {albumCover && (
-                  <div className="hero-release-cover">
-                    <img src={albumCover} alt="Album cover" />
-                  </div>
-                )}
-
-                <div className="hero-release-links">
-                  {links.map(({ key, label, Icon }) => (
-                    <a
-                      key={key}
-                      className="hero-stream-link"
-                      href={streaming[key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                    >
-                      <Icon />
-                    </a>
-                  ))}
-                </div>
-              </>
-            )}
+            <ListenSection
+              heading={listenHeading}
+              cover={albumCover}
+              coverAlt="Albumcover"
+              streaming={streaming}
+              delay={isInitialPageLoad ? preloaderDelay + 0.35 : 1.3}
+            />
 
             {videoEmbed && showVideo && (
               <div className="hero-video">
